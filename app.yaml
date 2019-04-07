@@ -1,5 +1,3 @@
-application: pik-arenda
-
 runtime: php55
 api_version: 1
 threadsafe: true
