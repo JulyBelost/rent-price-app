@@ -1,5 +1,8 @@
 
 <html>
+<head> 
+<meta charset="utf-8">
+</head>
 <body>
 
 <form action="main.php" method="post">
