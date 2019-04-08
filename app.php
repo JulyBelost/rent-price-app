@@ -51,8 +51,8 @@ $app->post('/calc', function (Request $request) use ($app) {
                 address, floor, floor_total, renovation, time_to_tube, square)
             VALUES (:time, :ip, :user_agent, :coords, :address, :floor,
                 :floor_total, :renovation, :time_to_tube, :square)');
-        $stmt->execute([
-            ':time' => $time,
+        $logm = $stmt->execute([
+            ':time' => NULL,
             ':ip' => $ip,
             ':user_agent' => $user_agent,
             ':coords' => $coords,
@@ -63,6 +63,7 @@ $app->post('/calc', function (Request $request) use ($app) {
             ':time_to_tube' => $time_to_tube,
             ':square' => $square,
         ]);
+        syslog(LOG_INFO , $logm);
     }
 
     $cost = $floor * 1000;
