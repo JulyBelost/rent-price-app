@@ -22,6 +22,10 @@ $app->get('/history', function () use ($app) {
     ]);
 });
 
+$app->get('/calc', function () use ($app) {
+    return $twig->render('/calc.php');
+});
+
 $app->post('/calc', function (Request $request) use ($app) {
     /** @var PDO $db */
     $db = $app['database'];
