@@ -17,7 +17,7 @@ $app->get('/history', function () use ($app) {
 
     $results = $db->query('SELECT * from requests limit 20');
 
-    return $twig->render('/history.php', [
+    return $twig->render('/history.html', [
         'results' => $results,
     ]);
 });
@@ -25,7 +25,7 @@ $app->get('/history', function () use ($app) {
 $app->get('/calc', function () use ($app) {
     $twig = $app['twig'];
 
-    return $twig->render('/calc.php');
+    return $twig->render('/calc.html');
 });
 
 $app->post('/calc', function (Request $request) use ($app) {
@@ -65,7 +65,7 @@ $app->post('/calc', function (Request $request) use ($app) {
 
     $cost = $floor * 1000;
 
-    return $twig->render('/calc.php', [
+    return $twig->render('/calc.html', [
         'results' => $cost,
     ]);
 });
