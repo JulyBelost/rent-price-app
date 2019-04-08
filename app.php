@@ -9,7 +9,7 @@ $app = new Application();
 $app->register(new TwigServiceProvider());
 $app['twig.path'] = [ __DIR__ ];
 
-$app->get('/', function () use ($app) {
+$app->get('/history', function () use ($app) {
     /** @var PDO $db */
     $db = $app['database'];
     /** @var Twig_Environment $twig */
@@ -22,7 +22,7 @@ $app->get('/', function () use ($app) {
     ]);
 });
 
-$app->post('/', function (Request $request) use ($app) {
+$app->post('/calc', function (Request $request) use ($app) {
     /** @var PDO $db */
     $db = $app['database'];
 
@@ -37,21 +37,29 @@ $app->post('/', function (Request $request) use ($app) {
     $ip         === $request->getClientIp();
 
     if ($address) {
-        $stmt = $db->prepare('INSERT INTO requests (coords, address, floor,
-            floor_total, renovation, time_to_tube, square) VALUES (:coords,
-            :address, :floor, :floor_total, :renovation, :time_to_tube, :square)');
+        $stmt = $db->prepare('INSERT INTO requests (time, IP, User_Agent, coords,
+                address, floor, floor_total, renovation, time_to_tube, square)
+            VALUES (:time, :ip, :user_agent, :coords, :address, :floor,
+                :floor_total, :renovation, :time_to_tube, :square)');
         $stmt->execute([
+            ':time' => $time,
+            ':ip' => $ip,
+            ':user_agent' => $user_agent,
             ':coords' => $coords,
             ':address' => $address,
             ':floor' => $floor,
             ':floor_total' => $floor_total,
             ':renovation' => $renovation,
             ':time_to_tube' => $time_to_tube,
-            ':square' => $square
+            ':square' => $square,
         ]);
     }
 
-    return $app->redirect('/calc.php');
+    $cost = $floor * 1000;
+
+    return $twig->render('/calc.php', [
+        'results' => $cost,
+    ]);
 });
 
 // function to return the PDO instance
