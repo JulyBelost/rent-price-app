@@ -25,7 +25,9 @@ $app->get('/history', function () use ($app) {
 $app->get('/calc', function () use ($app) {
     $twig = $app['twig'];
 
-    return $twig->render('/calc.html');
+    return $twig->render('/calc.html', [
+        'results' => NULL,
+    ]);
 });
 
 $app->post('/calc', function (Request $request) use ($app) {
