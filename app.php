@@ -40,7 +40,8 @@ $app->post('/calc', function (Request $request) use ($app) {
     $time_to_tube = $request->request->get('time_to_tube');
     $square       = $request->request->get('square');
     $user_agent   = $request->headers->get('User-Agent');
-    $ip         === $request->getClientIp();
+    $ip           = $request->getClientIp();
+    $time         = time();
 
     if ($address) {
         $stmt = $db->prepare('INSERT INTO requests (time, IP, User_Agent, coords,
