@@ -3,10 +3,10 @@ api_version: 1
 threadsafe: true
 handlers:
 - url: /.*
-  script: app.php
+  script: index.php
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
   # values obtained when configuring your Cloud SQL instance.
   MYSQL_DSN: mysql:unix_socket=/cloudsql/pik-arenda:europe-west3:rent-db;dbname=rent
-  MYSQL_USER: 'root'
-  MYSQL_PASSWORD: '9'
+  MYSQL_USER: root
+  MYSQL_PASSWORD: 9
