@@ -23,6 +23,8 @@ $app->get('/history', function () use ($app) {
 });
 
 $app->get('/calc', function () use ($app) {
+    $twig = $app['twig'];
+
     return $twig->render('/calc.php');
 });
 
