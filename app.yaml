@@ -3,7 +3,7 @@ api_version: 1
 threadsafe: true
 handlers:
 - url: /.*
-  script: main.php
+  script: app.php
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
   # values obtained when configuring your Cloud SQL instance.
