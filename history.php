@@ -35,7 +35,7 @@ function display_data($data) {
 
 <?php if($results) {display_data($results);}?>
 
-<form action="/" method="get">
+<form action="/history" method="get">
 <input type="submit" name="submit" value="Get history">
 </form>
 

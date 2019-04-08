@@ -6,7 +6,7 @@
 
 <?php if($results) {echo("your rent cost is" . $results);}?>
 
-<form action="/" method="post">
+<form action="/calc" method="post">
 <label for="1">Координаты:</label>
 <input id="1" type="text" name="coords" placeholder="координаты дома"><br>
 <label for="2">Адрес:</label>
