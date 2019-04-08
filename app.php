@@ -31,6 +31,7 @@ $app->get('/calc', function () use ($app) {
 $app->post('/calc', function (Request $request) use ($app) {
     /** @var PDO $db */
     $db = $app['database'];
+    $twig = $app['twig'];
 
     $coords       = $request->request->get('coords');
     $address      = $request->request->get('address');
