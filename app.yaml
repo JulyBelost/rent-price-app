@@ -1,9 +1,8 @@
 runtime: php72
-api_version: 1
-threadsafe: true
+
 handlers:
 - url: /.*
-  script: index.php
+  script: auto
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
   # values obtained when configuring your Cloud SQL instance.
