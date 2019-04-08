@@ -4,7 +4,13 @@
 </head>
 <body>
 
-<?php if($results) {echo($results);}?>
+{% if results %}
+    <h2>last 20 requests:</h2>
+
+    {% for row in results %}
+        <div><strong> {{ row.address }} </strong></div>
+    {% endfor %}
+{% endif %}
 
 <form action="/history" method="get">
 <input type="submit" name="submit" value="Get history">

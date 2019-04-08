@@ -4,7 +4,10 @@
 </head>
 <body>
 
-<?php if($results) {echo("your rent cost is" . $results);}?>
+{% if results %}
+    <h2>your rent cost:</h2>
+    <div><strong> {{ results }} </strong></div>
+{% endif %}
 
 <form action="/calc" method="post">
 <label for="1">Координаты:</label>
