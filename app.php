@@ -44,6 +44,7 @@ $app->post('/calc', function (Request $request) use ($app) {
     $square       = $request->request->get('square');
     $user_agent   = $request->headers->get('User-Agent');
     $ip           = $request->getClientIp();
+    $phptime      = time();
     $time         = date("Y-m-d H:i:s", $phptime);
 
     if ($address) {
@@ -66,7 +67,13 @@ $app->post('/calc', function (Request $request) use ($app) {
         syslog(LOG_INFO , $logm);
     }
 
-    $cost = $floor * 1000;
+    $base_cost_unit = 15;
+    $district_factor = 1;
+    $tube_factor = 15 / $time_to_tube;
+    $floor_factor = $floor == $floor_total || $floor == 1 ? 0.8 : 1;
+    $ren_factor = 1;
+    $cost = $base_cost_unit * $square * ($district_factor * $tube_factor +
+         $floor_factor * $ren_factor);
 
     return $twig->render('/calc.html', [
         'results' => $cost,
