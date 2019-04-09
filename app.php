@@ -54,7 +54,7 @@ $app->post('/calc', function (Request $request) use ($app) {
                 :floor_total, :renovation, :time_to_tube, :square)');
         $logm = $stmt->execute([
             ':time' => $time,
-            ':ip' => $ip,
+            ':ip' => end($ip),
             ':user_agent' => $user_agent,
             ':coords' => $coords,
             ':address' => $address,
