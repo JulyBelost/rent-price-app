@@ -14,7 +14,7 @@
 <label for="4">Количество этажей:</label>
 <input id="4" type="number" name="floor_total" step="1" value="9"><br>
 <label for="5">Ремонт:</label>
-<input id="5" list="renovation_type" name="renovation" value="без ремонта"><br>
+<input id="5" list="renovation_type" name="renovation"><br>
 <datalist id="renovation_type">
     <option value="без ремонта">
     <option value="косметический">
@@ -26,8 +26,26 @@
 <label for="7">Площадь:</label>
 <input id="7" type="number" name="square" value="37" required> кв. м. <br>
 
+<input id="address" name="address1" type="text" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/css/suggestions.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
+
+<script>
+    $("#address").suggestions({
+        token: "21ce36586e78437747637f0dfcf986424163407c",
+        type: "ADDRESS",
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function(suggestion) {
+            console.log(suggestion);
+        }
+    });
+</script>
+
 <input type="submit" name="submit" value="Calculate rent cost">
 </form>
+
+
 
 {% if results %}
     <div><h2>your rent cost:</h2></div>

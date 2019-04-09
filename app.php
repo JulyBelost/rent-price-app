@@ -67,7 +67,8 @@ $app->post('/calc', function (Request $request) use ($app) {
         syslog(LOG_INFO , $logm);
     }
 
-    $base_cost_unit = 15;
+    // коэффициенты для рассчета величины арендной платы
+    $base_cost_unit = 350;
     $district_factor = 1;
     $tube_factor = 15 / $time_to_tube;
     $floor_factor = $floor == $floor_total || $floor == 1 ? 0.8 : 1;
