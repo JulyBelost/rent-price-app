@@ -15,7 +15,7 @@ $app->get('/history', function () use ($app) {
     /** @var Twig_Environment $twig */
     $twig = $app['twig'];
 
-    $results = $db->query('SELECT * from requests limit 20');
+    $results = $db->query('SELECT * from requests order by id desc limit 20');
 
     return $twig->render('/history.html', [
         'results' => $results,
@@ -77,7 +77,7 @@ $app->post('/calc', function (Request $request) use ($app) {
     } else {
         $tube_factor = $time_to_tube <= 15 ? 1 : 0.8;
     }
-    
+
     $cost = $base_cost_unit * $square * ($district_factor * $tube_factor +
          $floor_factor * $ren_factor);
 
