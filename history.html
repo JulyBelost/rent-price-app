@@ -5,11 +5,37 @@
 <body>
 
 {% if results %}
-    <h1>last 20 requests:</h1>
-
-    {% for row in results %}
-        <div><strong> {{ row.address }} </strong></div>
-    {% endfor %}
+    <table>
+        <tr>
+            <td>time</td>
+            <td>ip</td>
+            <td>user_agent</td>
+            <td>coords</td>
+            <td>address</td>
+            <td>floor</td>
+            <td>floor_total</td>
+            <td>renovation</td>
+            <td>time_to_tube</td>
+            <td>square</td>
+            <td>id</td>
+        </tr>
+        {% for item in results %}
+            <tr>
+                <td>{{ item.time }}</td>
+                <td>{{ item.ip }}</td>
+                <td>{{ item.user_agent }}</td>
+                <td>{{ item.coords }}</td>
+                <td>{{ item.address }}</td>
+                <td>{{ item.floor }}</td>
+                <td>{{ item.floor_total }}</td>
+                <td>{{ item.renovation }}</td>
+                <td>{{ item.time_to_tube }}</td>
+                <td>{{ item.square }}</td>
+                <td>{{ item.id }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endif %}
+
 
 </html>

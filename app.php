@@ -44,7 +44,7 @@ $app->post('/calc', function (Request $request) use ($app) {
     $square       = $request->request->get('square');
     $user_agent   = $request->headers->get('User-Agent');
     $ip           = $request->getClientIp();
-    $time         = time();
+    $time         = date("Y-m-d H:i:s", $phptime);
 
     if ($address) {
         $stmt = $db->prepare('INSERT INTO requests (time, IP, User_Agent, coords,
@@ -52,7 +52,7 @@ $app->post('/calc', function (Request $request) use ($app) {
             VALUES (:time, :ip, :user_agent, :coords, :address, :floor,
                 :floor_total, :renovation, :time_to_tube, :square)');
         $logm = $stmt->execute([
-            ':time' => NULL,
+            ':time' => $time,
             ':ip' => $ip,
             ':user_agent' => $user_agent,
             ':coords' => $coords,
