@@ -73,7 +73,12 @@ $app->post('/calc', function (Request $request) use ($app) {
     $base_cost_unit = 350;
     $district_factor = 1;
     $floor_factor = $floor == $floor_total || $floor == 1 ? 0.8 : 1;
-    $ren_factor = 1;
+    $ren_factor_arr = [
+        'без ремонта' => 0.6,
+        'косметический' => 1,
+        'евро'=> 1.1,
+        'дизайнерский'=> 1.3,
+    ];
     if($time_to_tube <= 10){
         $tube_factor = $time_to_tube <= 5 ? 1.5 : 1.2;
     } else {
@@ -81,7 +86,7 @@ $app->post('/calc', function (Request $request) use ($app) {
     }
 
     $cost = $base_cost_unit * $square * ($district_factor * $tube_factor +
-         $floor_factor * $ren_factor);
+         $floor_factor * $ren_factor_arr[$renovation]);
 
     return $twig->render('/calc.html', [
         'results' => $cost,
