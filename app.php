@@ -31,6 +31,8 @@ $app->get('/calc', function () use ($app) {
 });
 
 $app->post('/calc', function (Request $request) use ($app) {
+    Request::setTrustedProxies(array($request->server->get('REMOTE_ADDR')));
+
     /** @var PDO $db */
     $db = $app['database'];
     $twig = $app['twig'];
@@ -43,7 +45,7 @@ $app->post('/calc', function (Request $request) use ($app) {
     $time_to_tube = $request->request->get('time_to_tube');
     $square       = $request->request->get('square');
     $user_agent   = $request->headers->get('User-Agent');
-    $ip           = $request->getClientIps();
+    $ip           = $request->getClientIp();
     $phptime      = time();
     $time         = date("Y-m-d H:i:s", $phptime);
 
@@ -54,7 +56,7 @@ $app->post('/calc', function (Request $request) use ($app) {
                 :floor_total, :renovation, :time_to_tube, :square)');
         $logm = $stmt->execute([
             ':time' => $time,
-            ':ip' => end($ip),
+            ':ip' => $ip,
             ':user_agent' => $user_agent,
             ':coords' => $coords,
             ':address' => $address,
