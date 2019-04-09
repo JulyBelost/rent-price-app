@@ -10,17 +10,9 @@
 
 <section class="container">
   <label for="address">Адрес:</label>
-  <div class="row">
     <input id="address" name="address" type="text" />
-  </div>
-  <div class="row">
-      <div class="label">
-          <label for="geo">Геокоорд.</label>
-      </div>
-      <div class="value">
-        <span id="geo"></span>
-      </div>
-  </div>
+      <label for="address">Координаты:</label>
+        <span id="geo" name="coords" type="text"></span>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,6 +20,11 @@
 <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
 
 <script>
+    function join(arr /*, separator */) {
+        var separator = arguments.length > 1 ? arguments[1] : ", ";
+        return arr.filter(function(n){return n}).join(separator);
+    }
+
     function showGeo(suggestion) {
       var address = suggestion.data;
       if (address.qc_geo != "5") {
@@ -48,6 +45,7 @@
         restrict_value: true,
         onSelect: function(suggestion) {
             console.log(suggestion);
+            showGeo(suggestion);
         }
     });
 </script>
