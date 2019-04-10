@@ -4,9 +4,7 @@
 </head>
 <body>
 
-
-
-<form id="form" action="/calc" method="post">
+<form action="/calc" method="post">
 
 <section class="container">
     <label for="address">Адрес:</label>
@@ -16,11 +14,9 @@
     <input type="hidden" id="coords" name="coords" value="8 8"/>
 </section>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/css/suggestions.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
-
 <script>
     function showGeo(suggestion) {
       var address = suggestion.data;
@@ -46,7 +42,6 @@
             showGeo(suggestion);
         }
     });
-
 </script>
 
 
@@ -67,11 +62,8 @@
 <label for="7">Площадь:</label>
 <input id="7" type="number" name="square" value="37" required> кв. м. <br>
 
-
 <input type="submit" name="submit" value="Calculate rent cost">
 </form>
-
-
 
 {% if results %}
     <div><h2>your rent cost:</h2></div>

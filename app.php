@@ -70,7 +70,7 @@ $app->post('/calc', function (Request $request) use ($app) {
     }
     // коэффициенты для рассчета величины арендной платы
     $base_cost_unit = 350;
-    
+
     // Moscow center coords 55°45'07.3"N 37°37'27.0"E
     $lat_c = 55.752028;
     $long_c = 37.624167;
@@ -89,7 +89,6 @@ $app->post('/calc', function (Request $request) use ($app) {
         $district_factor = $distance_to_center <= $to_mcad ? 0.9 : 0.7;
     }
 
-     = 1;
     $floor_factor = $floor == $floor_total || $floor == 1 ? 0.8 : 1;
     $ren_factor_arr = [
         'без ремонта' => 0.6,
@@ -131,10 +130,10 @@ function getDistance($lat1, $long1, $lat2, $long2) {
         return 0;
     }
     $to_rad = M_PI / 180;
-    $dist = acos(sin($lat1 * $rad)
-        * sin($lat2 * $rad) +  cos($lat1 * $rad)
-        * cos($lat2 * $rad) * cos(($long1 - $long2) * $rad));
-    $dist_km = $dist / $rad * 60 *  1.853;
+    $dist = acos(sin($lat1 * $to_rad)
+        * sin($lat2 * $to_rad) +  cos($lat1 * $to_rad)
+        * cos($lat2 * $to_rad) * cos(($long1 - $long2) * $to_rad));
+    $dist_km = $dist / $to_rad * 60 *  1.853;
     return $dist_km;
 }
 
