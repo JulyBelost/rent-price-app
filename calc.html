@@ -13,7 +13,11 @@
     <input id="address" name="address" type="text" />
     <label for="geo">Координаты:</label>
     <span id="geo"></span>
-    <input id="coords" type="hidden" name="coords" value="8 8"/>
+    <input type=hidden id="abcId" name="abcName" 
+                  value="Wall Street! Money Never Sleep"/>
+
+    <input type="hidden" id="coords" name="coords" value="8 8"/>
+    <input type=button value="Get Value" onclick="printIt()" />
 </section>
 
 
@@ -22,12 +26,13 @@
 <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
 
 <script>
-
+    function printIt(){
+        var coords = document.getElementById('coords');
+    }    
     function showGeo(suggestion) {
       var address = suggestion.data;
       if (address.qc_geo != "5") {
         var geo = address.geo_lat.concat(", ", address.geo_lon);
-        var coords = document.getElementById('<%= hiddenid.geo %>');
         coords.value = geo;
         $("#geo").text(geo);
       }
