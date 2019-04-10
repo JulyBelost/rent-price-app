@@ -6,7 +6,7 @@
 
 
 
-<form id="myForm" action="/calc" method="post">
+<form id="form" action="/calc" method="post">
 
 <section class="container">
     <label for="address">Адрес:</label>
@@ -15,7 +15,6 @@
     <span id="geo"></span>
 </section>
 
-<input type="hidden" name="coods" id="geo" value="">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/css/suggestions.min.css" rel="stylesheet" />
@@ -45,6 +44,11 @@
             showGeo(suggestion);
         }
     });
+
+    $('<input />').attr('type', 'hidden')
+          .attr('name', "coords")
+          .attr('value', $('#geo').val())
+          .appendTo('#form');
 </script>
 
 
