@@ -46,7 +46,10 @@
         }
     });
 
-
+    $('<input />').attr('type', 'hidden')
+          .attr('name', "coords")
+          .attr('value', $('#geo').val())
+          .appendTo('#form');
 </script>
 
 
