@@ -22,14 +22,14 @@
 <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
 
 <script>
-    var coords = document.getElementById('<%= hiddenid.geo %>');
 
     function showGeo(suggestion) {
       var address = suggestion.data;
       if (address.qc_geo != "5") {
         var geo = address.geo_lat.concat(", ", address.geo_lon);
-        $("#geo").text(geo);
+        var coords = document.getElementById('<%= hiddenid.geo %>');
         coords.value = geo;
+        $("#geo").text(geo);
       }
     }
 
